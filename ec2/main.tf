@@ -1,5 +1,11 @@
 #https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started
 terraform {
+  cloud {
+    organization = "gabrielstar"
+    workspaces {
+      name = "one"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -20,7 +26,7 @@ resource "aws_instance" "gabriel_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Gabriel Sample Instance on AWS",
+    Name = var.instance_name
     User = "gs"
   }
 }
